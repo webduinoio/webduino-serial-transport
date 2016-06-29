@@ -21,14 +21,12 @@
     this._sendOutHandler = sendOut.bind(this);
     this._disconnHandler = onDisconnect.bind(this);
     this._errorHandler = onError.bind(this);
-    this._beforeUnloadHandler = this.close.bind(this);
 
     init(this);
   }
 
   function init(self) {
     var options = self._options;
-    window.addEventListener('beforeunload', self._beforeUnloadHandler);
     serial.onReceive.addListener(self._messageHandler);
     serial.onReceiveError.addListener(self._errorHandler);
     serial.connect(options.path, {
@@ -48,7 +46,6 @@
   }
 
   function onDisconnect(result) {
-    window.removeEventListener('beforeunload', this._beforeUnloadHandler);
     serial.onReceive.removeListener(this._messageHandler);
     serial.onReceiveError.removeListener(this._errorHandler);
     delete this._connectionId;
