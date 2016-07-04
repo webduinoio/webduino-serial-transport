@@ -58,7 +58,7 @@
 
   function sendOut() {
     var payload = new Uint8Array(this._buf).buffer;
-    serial.send(this._connectionId, payload);
+    this.isOpen && serial.send(this._connectionId, payload);
     clearBuf(this);
   }
 

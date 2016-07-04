@@ -60,7 +60,7 @@ function onError(error) {
 
 function sendOut() {
   var payload = new Buffer(this._buf);
-  this._port && this._port.write(payload);
+  this.isOpen && this._port.write(payload);
   clearBuf(this);
 }
 
