@@ -90,7 +90,7 @@
   };
 
   proto.close = function () {
-    if (this.isOpen) {
+    if (this._connectionId) {
       serial.disconnect(this._connectionId, this._disconnHandler);
     }
   };

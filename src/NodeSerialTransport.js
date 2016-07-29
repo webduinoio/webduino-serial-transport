@@ -92,8 +92,13 @@ proto.send = function (payload) {
 };
 
 proto.close = function () {
-  if (this.isOpen) {
-    this._port.close();
+  if (this._port) {
+    if (this._port.isOpen()) {
+      this._port.close();
+    } else {
+      this._port.removeAllListeners();
+      delete this._port;
+    }
   }
 };
 
