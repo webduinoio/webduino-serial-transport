@@ -1,6 +1,6 @@
 'use strict';
 
-var SerialPort = require('serialport').SerialPort,
+var SerialPort = require('serialport'),
   webduino = require('webduino-js');
 
 var push = Array.prototype.push;
@@ -78,7 +78,7 @@ NodeSerialTransport.prototype = proto = Object.create(Transport.prototype, {
 
   isOpen: {
     get: function () {
-      return this._port && this._port.isOpen();
+      return this._port && this._port.isOpen;
     }
   }
 
@@ -91,9 +91,13 @@ proto.send = function (payload) {
   }
 };
 
+proto.flush = function () {
+
+}
+
 proto.close = function () {
   if (this._port) {
-    if (this._port.isOpen()) {
+    if (this._port.isOpen) {
       this._port.close();
     } else {
       this._port.removeAllListeners();
