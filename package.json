@@ -19,6 +19,6 @@
   "homepage": "https://github.com/webduinoio/webduino-serial-transport#readme",
   "dependencies": {
     "webduino-js": "0.x",
-    "serialport": "2.x"
+    "serialport": "7.x"
   }
 }
